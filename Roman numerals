@@ -8,32 +8,23 @@
 // This is the header file
 
 
-#include <std_lib_facilities.h>
+#include "std_lib_facilities.h"
 
 class Roman_nums				// Define class that will deal with input of a string
 {						// in the form of a roman numeral and output arabic number
 private:
 	string a;
 
-	public:
+public:
 	Roman_nums();				// Default constructor
-
 	Roman_nums(string aa);			// Contructor of the string into an object
-
 	~Roman_nums();				// Default destructor
-
 	vector<int> myvec;			// Vector that will hold the converted numbers
-
 	bool is_roman(char c);			// Function for checking of the entered number is roman
-
 	int to_num(char s);			// Function for converting roman digits into arabic
-
 	void to_vector();			// Function that inputs the converted numbers in the vector
-
 	void make_nums();			// Function for making nums from digits
-
 	void to_arabic();			// Function that prints the numbers as a final number
-
 	void input();				// Function for input
 };
 
