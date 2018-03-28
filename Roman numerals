@@ -11,20 +11,20 @@
 #include "std_lib_facilities.h"
 
 class Roman_nums				// Define class that will deal with input of a string
-{								// in the form of a roman numeral and output arabic number
+{						// in the form of a roman numeral and output arabic number
 private:
 	string a;
 
-public:
+	public:
 	Roman_nums();				// Default constructor
 
-	Roman_nums(string aa);		// Contructor of the string into an object
+	Roman_nums(string aa);			// Contructor of the string into an object
 
 	~Roman_nums();				// Default destructor
 
 	vector<int> myvec;			// Vector that will hold the converted numbers
 
-	bool is_roman(char c);		// Function for checking of the entered number is roman
+	bool is_roman(char c);			// Function for checking of the entered number is roman
 
 	int to_num(char s);			// Function for converting roman digits into arabic
 
@@ -44,7 +44,7 @@ public:
 
 #include "Roman_numerals_header.h"
 
-Roman_nums::Roman_nums() {};					// Constructors and destructors definition
+Roman_nums::Roman_nums() {};				// Constructors and destructors definition
 
 Roman_nums::Roman_nums(string aa)
 	: a(aa)
@@ -166,10 +166,10 @@ void Roman_nums::to_arabic()						// Iterate the vector and sum up the numbers i
 		result += myvec[f];
 	}
 	cout << "The number is: " << result << endl;	// Print the result
-	myvec.clear();									// Clear the vector to be prepaired for another input
+	myvec.clear();							// Clear the vector to be prepaired for another input
 }
 
-void Roman_nums::input()							// Input roman number from the keyboard
+void Roman_nums::input()						// Input roman number from the keyboard
 {
 	cout << "Enter roman number for conversion, enter '~' to quit" << endl;
 	while (cin >> a && a != "~")
