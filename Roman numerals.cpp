@@ -1,12 +1,10 @@
 // This is a simple program for converting roman numerals into arabic.
-// It is designed for studying purposes only and it has some flaws i.e. if you enter MDIIV
-// you'll get 1505. MDIIV is not a valid roman number! MDV is
+// It is designed for studying purpose only and it has some flaws e.g. if you enter MDIIV
+// you'll get 1505. MDIIV is not a valid roman number! MDV is!
 // Nevertheless, I had fun designing it and despite its flaws it works fine.
-
 
 //------------------------------------------------------------------------------------------
 // This is the header file
-
 
 #include "std_lib_facilities.h"
 
@@ -28,23 +26,16 @@ public:
 	void input();				// Function for input
 };
 
-
 //------------------------------------------------------------------------------------------
 // This is the source file
 
-
 #include <Roman_numerals_header.h>
-
 Roman_nums::Roman_nums() {};				// Constructors and destructors definition
-
 Roman_nums::Roman_nums(string aa)
 	: a(aa)
 {}
-
 Roman_nums::~Roman_nums() {};
-
 vector<int> myvec;
-
 bool Roman_nums::is_roman(char c)			// Check if the character is roman number
 {
 	if (c != 'I' || c != 'V' || c != 'X' || c != 'L' || c != 'C' || c != 'D' || c != 'M')
@@ -54,7 +45,6 @@ bool Roman_nums::is_roman(char c)			// Check if the character is roman number
 	else
 		return true;
 }
-
 int Roman_nums::to_num(char s)				// Convert the roman numbers into arabic numbers
 {
 	int a = 0;
@@ -90,7 +80,6 @@ int Roman_nums::to_num(char s)				// Convert the roman numbers into arabic numbe
 		error("Bad input!");
 	return a;
 }
-
 void Roman_nums::to_vector()				// Iterate the string for roman numbers and put them in the vector
 {
 	int num = 0;
@@ -102,7 +91,6 @@ void Roman_nums::to_vector()				// Iterate the string for roman numbers and put 
 	}
 	make_nums();
 }
-
 void Roman_nums::make_nums()				// Contruct the numbers 4, 9 and so on...
 {
 	for (int i = 1; i < myvec.size(); i++)
@@ -148,7 +136,6 @@ void Roman_nums::make_nums()				// Contruct the numbers 4, 9 and so on...
 	}
 	to_arabic();
 }
-
 void Roman_nums::to_arabic()						// Iterate the vector and sum up the numbers in it
 {
 	int result = 0;
@@ -170,10 +157,8 @@ void Roman_nums::input()						// Input roman number from the keyboard
 	}
 }
 
-
 //------------------------------------------------------------------------------------------
 // This is the main file
-
 
 #include <Roman_numerals_header.h>
 
@@ -186,18 +171,15 @@ try
 	keep_window_open();
 	return 0;
 }
-
 catch (exception& e)
 {
 	cerr << "Exception: " << e.what() << endl;
 	keep_window_open();
 	return 2;
 }
-
 catch (...)
 {
 	cerr << "Oops, unknown exception" << endl;
 	keep_window_open();
 	return 1;
 }
-
