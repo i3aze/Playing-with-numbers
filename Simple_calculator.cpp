@@ -13,19 +13,19 @@
 #include "string"
 #include "exception"
 
-void fill_vectors(std::string s, std::vector<double> &num);			//Function for pushing back elements in the vector
-double factorial(int fac_num);									              	//Function with algorithm for calculating factorial
-double exponent(double a, int n);									              //Function with algorithm for calculating exponent of a given number
+void fill_vectors(std::string s, std::vector<double> &num);				//Function for pushing back elements in the vector
+double factorial(int fac_num);								//Function with algorithm for calculating factorial
+double exponent(double a, int n);						        //Function with algorithm for calculating exponent of a given number
 void calculate_factorial(std::vector<double> &num);			    		//Function for calculating factorial
-bool check_decimals(std::string s_n);							            	//Function for checking decimals. The calculator takes up to two decimal numbers
-bool check_decimals_zero(std::string s_n);						        	//Function for checking if the number has zero decimals
+bool check_decimals(std::string s_n);							//Function for checking decimals. The calculator takes up to two decimal numbers
+bool check_decimals_zero(std::string s_n);				        	//Function for checking if the number has zero decimals
 void calculate_exponent(std::vector<double> &num);			    		//Function for calculaing exponent
 void multiply_and_divide(std::vector<double> &num);				     	//Function for calculating multiplication and division
 void add_and_subtract(std::vector<double> &num);				      	//Function for calculaing adition and subtraction
-double negative_number(double n);								              	//Function for creating negative numbers
+double negative_number(double n);								          //Function for creating negative numbers
 void calculate_brackets(std::vector<double> &cal_brack, std::vector<double> &num, double &temp_brack);	  //This and the next function calculate everything in a brackets
 void brackets(std::vector<double> &num, std::vector<double> &cal_brack, double &temp_brack);
-void calculate_parentheses(std::vector<double> &cal_paren, std::vector<double> &num, double &temp_par); 	//This and the next function calculate everything in a parentheses
+void calculate_parentheses(std::vector<double> &cal_paren, std::vector<double> &num, double &temp_par);   //This and the next function calculate everything in a parentheses
 void parentheses(std::vector<double> &num, std::vector<double> &cal_paren, double &temp_par);
 
 int main()
@@ -45,28 +45,28 @@ try{
 
 	while (std::getline(std::cin, expression) && expression != "quit" && !expression.empty())	//Prompt the user to enter expression, insert 'quit' to exit from the program
 	{
-		fill_vectors(expression, numbers);														    //Fill the vector with the string expression
+		fill_vectors(expression, numbers);					 //Fill the vector with the string expression
 
 		bool b = false;
-		for (unsigned i = 0; i < numbers.size(); i++)											//Iterate the vector
+		for (unsigned i = 0; i < numbers.size(); i++)				 //Iterate the vector
 		{
-			if (numbers.at(i) == 40.001 || numbers.at(i) == 41.001)					//If there are brackets (40 and 41 are ascii representation of '(', ')' resprectively). I add three decimal numbers on every sign so I can distinct them from the numbers
+			if (numbers.at(i) == 40.001 || numbers.at(i) == 41.001)		 //If there are brackets (40 and 41 are ascii representation of '(', ')' resprectively). I add three decimal numbers on every sign so I can distinct them from the numbers
 			{
 				b = true;
 			}
-			if (b && numbers.at(i) == 123.001)												    	//Error check if there are parentheses inside the brackets
+			if (b && numbers.at(i) == 123.001)				 //Error check if there are parentheses inside the brackets
 			{
 				throw("Bad expression!");
 			}
 		}
 		
-		if (b)																				                  	//b = true means there are brackets
+		if (b)									 //b = true means there are brackets
 		{
-			brackets(numbers, calculate_brack, temp_brack);									//Call the functions to calculate everything inside the brackets
+			brackets(numbers, calculate_brack, temp_brack);			 //Call the functions to calculate everything inside the brackets
 		}
 
 		bool p = false;
-		for (unsigned i = 0; i < numbers.size(); i++)											//Same procedure with the parentheses
+		for (unsigned i = 0; i < numbers.size(); i++)				 //Same procedure with the parentheses
 		{
 			if (numbers.at(i) == 123.001 || numbers.at(i) == 125.001)
 			{
@@ -78,12 +78,12 @@ try{
 			parentheses(numbers, calculate_par, temp_par);
 		}
 
-		calculate_factorial(numbers);									//When we are done with the brackets and the parentheses if there were any, now we have mathematical expression without them
-		calculate_exponent(numbers);									//I am calling the other functions for calculating
+		calculate_factorial(numbers);						//When we are done with the brackets and the parentheses if there were any, now we have mathematical expression without them
+		calculate_exponent(numbers);						//I am calling the other functions for calculating
 		multiply_and_divide(numbers);
 		add_and_subtract(numbers);
 
-		std::cout << "=";											      	//Print the result
+		std::cout << "=";							//Print the result
 		for (unsigned i = 0; i < numbers.size(); i++)
 		{
 			if (numbers.at(i) != 61.001)
@@ -122,48 +122,48 @@ void fill_vectors(std::string s, std::vector<double> &num)
 	std::string::size_type ss_type;
 	std::string s_number;
 	
-	for (char &c : s)									        //Iterate the string expression
+	for (char &c : s)									 //Iterate the string expression
 	{
 		bool valid_sign = false;
-		if (isalpha(c))								        	//Don't take letters
+		if (isalpha(c))								        //Don't take letters
 		{
 			throw("Bad input!");
 		}
-		else if (ispunct(c))						      	//If it is puctuation
+		else if (ispunct(c))						      		//If it is puctuation
 		{
-			for (unsigned i = 0; i < signs.size(); i++)	//Check if the char is contained in the signs vector
+			for (unsigned i = 0; i < signs.size(); i++)				//Check if the char is contained in the signs vector
 			{
 				if (c == signs.at(i))
 				{
 					valid_sign = true;
 				}
 			}
-			if (!valid_sign)						        	//If not, throw an exception
+			if (!valid_sign)						        //If not, throw an exception
 			{
 				throw("Bad input!");
 			}
 		}
-		if (ispunct(c) && c != '.')					  	//Check for decimals in the numbers
+		if (ispunct(c) && c != '.')					  		//Check for decimals in the numbers
 		{
 			if (check_decimals(s_number))
 			{
 				throw ("Cannot input more than two decimals!");
 			}
-			if (!s_number.empty())					    	//If the string has numbers in it
+			if (!s_number.empty())					    		//If the string has numbers in it
 			{
-				double number = std::stod(s_number, &ss_type);	//Convert it to double
-				num.push_back(number);				    	//And put it in the numbers vector
-				s_number.clear();					        	//Clear the string
-				num.push_back(c - ('\0') + 0.001);	//Put in the sign converted as decimal with three decimal numbers
+				double number = std::stod(s_number, &ss_type);			//Convert it to double
+				num.push_back(number);				    		//And put it in the numbers vector
+				s_number.clear();					        //Clear the string
+				num.push_back(c - ('\0') + 0.001);				//Put in the sign converted as decimal with three decimal numbers
 			}
 			else
 			{
-				num.push_back(c - ('\0') + 0.001);	//If the string is full, just put in the sign
+				num.push_back(c - ('\0') + 0.001);				//If the string is full, just put in the sign
 			}
 		}
-		else if (isdigit(c) || c == '.')				//If it's digit and is not a decimal sign
+		else if (isdigit(c) || c == '.')						//If it's digit and is not a decimal sign
 		{
-			s_number += c;							        	//add the char to the s_number string
+			s_number += c;							       	//add the char to the s_number string
 		}
 	}
 }
