@@ -1,6 +1,6 @@
 //This is a simple calculator made by Blazhe Jakimovski aka i3aze
 //All the program does is takes input through getline, and make numbers and signs
-//from the string and stores them in vector of doubles. The signes are also stored
+//from the string and stores them in vector of doubles. The signs are also stored
 //as doubles(chars converted into ascii value) for practicality reasons.
 //Than with iteration of the vector it makes the calculations and changes the values
 //in the vector acording to the mathematical expression rules.
